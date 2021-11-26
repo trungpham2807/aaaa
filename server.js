@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
-// require('dotenv').config()
+import dotenv from 'dotenv';
 
-
+dotenv.config();
 const bodyParser = require('body-parser');
 const PASSWORD = process.env.MONGO_PASSWORD;
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise;
 
 // Connect MongoDB at default port 27017.
 mongoose.connect(
-  "mongodb+srv://t1user:cxTLuvWjmnXn3LSR@mdbu.bpuao.mongodb.net/overseas_talkshow1",
+    process.env.MONGODB_URL,
 //  "mongodb://localhost:27017/formm",
   {
     useNewUrlParser: true,
