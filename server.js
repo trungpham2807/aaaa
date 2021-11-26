@@ -7,7 +7,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const PASSWORD = process.env.MONGO_PASSWORD;
 app.use(bodyParser.urlencoded({ extended: true })); 
-
+app.use(cors());
+// app.use(express.static(path.join(__dirname,)))
 mongoose.Promise = global.Promise;
 
 // Connect MongoDB at default port 27017.
@@ -37,17 +38,15 @@ const notesSchema = {
 
 }
 const Note = mongoose.model("Note", notesSchema)
-app.get("https://overseasform.netlify.app",function(req, res) {
+app.get("/",function(req, res) {
 
      res.sendFile(__dirname + "/index.html")
 })
-app.get("https://overseasform.netlify.app/success", function(req, res) {
-    res.send("success")
-})
+
 app.get('/index.css', function(req, res) {
     res.sendFile(__dirname + "/" + "index.css");
   });
-app.post("https://overseasform.netlify.app/", function(req, res){
+app.post("/", function(req, res){
         let newNote = new Note({
             name: req.body.name,
             age: req.body.age,
