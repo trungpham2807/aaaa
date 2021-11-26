@@ -37,17 +37,17 @@ const notesSchema = {
 
 }
 const Note = mongoose.model("Note", notesSchema)
-app.get("/",function(req, res) {
+app.get("https://overseasform.netlify.app",function(req, res) {
 
      res.sendFile(__dirname + "/index.html")
 })
-app.get("/success", function(req, res) {
+app.get("https://overseasform.netlify.app/success", function(req, res) {
     res.send("success")
 })
 app.get('/index.css', function(req, res) {
     res.sendFile(__dirname + "/" + "index.css");
   });
-app.post("/", function(req, res){
+app.post("https://overseasform.netlify.app/", function(req, res){
         let newNote = new Note({
             name: req.body.name,
             age: req.body.age,
